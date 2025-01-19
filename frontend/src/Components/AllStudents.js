@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import '../styles/AllStudents.css'; 
+import footer from '../images/footer.jpeg';
+
 
 export default function AllStudents() {
   const [students, setStudents] = useState([]);
@@ -39,6 +42,7 @@ export default function AllStudents() {
         alert(err.message);
       });
   }
+
   function handleDelete(id) {
     const confirmDelete = window.confirm("Are you sure you want to delete this student?");
     if (confirmDelete) {
@@ -53,11 +57,14 @@ export default function AllStudents() {
         });
     }
   }
-  
 
   return (
-    <div className="container">
-      <h1>All Students</h1>
+    <div className="container" style={{
+      backgroundImage: `url(${footer})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}>
+      <h1 className="header-gap" style={{ textAlign: 'center' }}>All Students</h1> 
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -78,6 +85,7 @@ export default function AllStudents() {
               <td>
                 <button
                   className="btn btn-warning"
+                  style={{ marginRight: "20px" }}
                   onClick={() => handleEdit(student)}
                 >
                   Edit

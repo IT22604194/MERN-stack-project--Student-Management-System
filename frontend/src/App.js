@@ -5,6 +5,7 @@ import AddStudent from './Components/AddStudent'; // assuming you have an AddStu
 import AllStudents from './Components/AllStudents';
 import EditStudent from './Components/EditStudent';
 
+
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/add" element={<AddStudent />} />
           
         </Routes>
+        
       </div>
     </Router>
   );
