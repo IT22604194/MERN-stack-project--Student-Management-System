@@ -23,7 +23,7 @@ export default function AllStudents() {
 
   function handleEdit(student) {
     setEditingStudent(student); // Set the selected student for editing
-    navigate(`/edit/${id}`); // Navigate to the edit page with the student's ID
+    navigate(`/edit/${student._id}`); // Navigate to the edit page with the student's ID
   }
 
   function handleUpdate(e) {
