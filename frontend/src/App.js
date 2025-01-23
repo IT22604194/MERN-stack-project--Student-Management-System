@@ -4,6 +4,7 @@ import Header from './Components/Header'; // assuming you have a Header componen
 import AddStudent from './Components/AddStudent'; // assuming you have an AddStudent component
 import AllStudents from './Components/AllStudents';
 import EditStudent from './Components/EditStudent';
+import Home from './Components/Home';
 
 
 function App() {
@@ -13,9 +14,13 @@ function App() {
         <Header />
         
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path='/' element={<AllStudents/>} />
           <Route path="/edit/:id" element={<EditStudent />} />
           <Route path="/add" element={<AddStudent />} />
+          
+          
+
           
         </Routes>
         

@@ -4,6 +4,11 @@ import editstudent from "../images/editstudent.jpg";
 
 export default function AddStudent() {
   const [name, setName] = useState("");
+  const [position, setPosition] = useState("");
+  const [grade, setGrade] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [address, setAddress] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
 
@@ -12,6 +17,11 @@ export default function AddStudent() {
 
     const newStudent = {
       name,
+      position,
+      grade,
+      password,
+      phoneNumber,
+      address,
       age,
       gender,
     };
@@ -21,6 +31,11 @@ export default function AddStudent() {
       .then(() => {
         alert("Student Added");
         setName("");
+        setPosition("");
+        setGrade("");
+        setPassword("");
+        setPhoneNumber("");
+        setAddress("");
         setAge("");
         setGender("");
       })
@@ -53,10 +68,10 @@ export default function AddStudent() {
           width: "100%",
         }}
       >
-        <h1 style={{ textAlign: "center" }}>Add Student</h1>
+        <h1 style={{ textAlign: "center" }}>Sign Up</h1>
         <form onSubmit={sendData}>
           <div className="form-group">
-            <label htmlFor="name">Student Name</label>
+            <label htmlFor="name">User Name</label>
             <input
               type="text"
               className="form-control"
@@ -68,37 +83,75 @@ export default function AddStudent() {
               }}
             />
           </div>
-
           <div className="form-group">
-            <label htmlFor="age">Student's Age</label>
+            <label htmlFor="name"> Position</label>
             <input
               type="text"
               className="form-control"
-              id="age"
-              placeholder="Enter Student Age"
+              id="position"
+              placeholder="Enter User's Position "
               onChange={(e) => {
-                setAge(e.target.value);
-                console.log("Age updated:", e.target.value); // Debug log for age input
+                setPosition(e.target.value);
+                console.log("position updated:", e.target.value); // Debug log for name input
               }}
             />
           </div>
-
           <div className="form-group">
-            <label htmlFor="gender">Gender</label>
-            <input
-              type="text"
+            <label htmlFor="name"> Grade</label>
+            <select
+              
               className="form-control"
-              id="gender"
-              placeholder="Enter Student Gender"
-              onChange={(e) => {
-                setGender(e.target.value);
-                console.log("Gender updated:", e.target.value); // Debug log for gender input
-              }}
+              id="grade"
+              value={grade}
+              placeholder="Enter User's Position "
+              onChange={(e) => setGrade(e.target.value)}
+              required>
+                <option value="">Select Grade</option>
+                <option value="1-2">1-2 Years</option>
+                <option value="3-4">3-4 Years</option>
+                <option value="5-7">5-7 Years</option>
+            </select>
+            </div>
+            <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              placeholder="Enter Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              minLength="6"
             />
           </div>
-
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input
+              type="tel"
+              className="form-control"
+              id="phoneNumber"
+              placeholder="Enter Phone Number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+              pattern="\d{10}" // Ensures a valid 10-digit number
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <textarea
+              className="form-control"
+              id="address"
+              placeholder="Enter Address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              required
+              minLength="10"
+            />
+          </div>
           <button type="submit" className="btn btn-primary w-100">
-            Submit
+            Register
           </button>
         </form>
       </div>

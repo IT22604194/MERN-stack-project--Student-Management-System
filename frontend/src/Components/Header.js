@@ -4,19 +4,30 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-light bg-light"
+      className="navbar navbar-expand-lg"
       style={{
-        backgroundColor: "rgba(255, 255, 255, 0.9)", 
-        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", 
-        position: "sticky", 
+        background: "linear-gradient(to right, #7FE466, #47C364)",
+        color: "white",
+        boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+        position: "sticky",
         top: 0,
-        zIndex: 1000, 
+        zIndex: 1000,
       }}
     >
       <div className="container">
-        <a className="navbar-brand" href="#" style={{ fontWeight: "bold", color: "#007bff" }}>
-          Student Management System
-        </a>
+        {/* Link to the home page */}
+        <Link
+          to="/"
+          className="navbar-brand"
+          style={{
+            fontWeight: "bold",
+            color: "#FFFFFF",
+            fontSize: "1.5rem",
+            letterSpacing: "1px",
+          }}
+        >
+          🌱 GrowMate
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -30,24 +41,31 @@ function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link
-                to="/"
-                className="nav-link"
-                style={{ fontWeight: "500", color: "#007bff" }}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                to="/add"
-                className="nav-link"
-                style={{ fontWeight: "500", color: "#007bff" }}
-              >
-                Create Student
-              </Link>
-            </li>
+            {[
+              { label: "Home", path: "/" },
+              { label: "Our Products", path: "/" },
+              { label: "Blogs", path: "/" },
+              { label: "Contact Us", path: "/" },
+              { label: "Create Student", path: "/add" },
+            ].map((item, index) => (
+              <li className="nav-item" key={index}>
+                <Link
+                  to={item.path}
+                  className="nav-link"
+                  style={{
+                    fontWeight: "500",
+                    color: "#FFFFFF",
+                    margin: "0 10px",
+                    fontSize: "1rem",
+                    transition: "color 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => (e.target.style.color = "#FCE87B")}
+                  onMouseLeave={(e) => (e.target.style.color = "#FFFFFF")}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
