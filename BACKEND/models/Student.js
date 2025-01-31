@@ -23,7 +23,7 @@ const studentSchema = new Schema({
         minlength: 6 // password should be at 6 characters
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
         validate: {
             validator: function (v) {
@@ -37,10 +37,10 @@ const studentSchema = new Schema({
         required: true,
         minlength: 10 // Address must be at least 10 characters
     },
-    age:{
+    /*age:{
         type:Number,
         required: true
-    },
+    },*/
     gender:{
         type:String,
         required:true

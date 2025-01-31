@@ -12,9 +12,9 @@ router.route("/add").post((req,res)=>{
     const position = req.body.position;
     const grade = req.body.grade;
     const password = req.body.password;
-    const phoneNumber = Number(req.body.phoneNumber);
+    const phoneNumber = req.body.phoneNumber;
     const address = req.body.address;
-    const age = Number(req.body.age);
+   
     const gender = req.body.gender;
 
     const newStudent = new Student({
@@ -24,7 +24,6 @@ router.route("/add").post((req,res)=>{
         password,
         phoneNumber,
         address,
-        age,
         gender
     })
 
@@ -49,7 +48,7 @@ http://Localhost:8070/student/update/5fhjkjkj
 
 router.route("/update/:id").put(async (req, res) => {
     let userId = req.params.id;
-    const {name,position,grade,password,phoneNumber,address, age, gender} = req.body;
+    const {name,position,grade,password,phoneNumber,address,gender} = req.body;
 
     const updateStudent = { //create seperate obj 
         name,
@@ -58,7 +57,7 @@ router.route("/update/:id").put(async (req, res) => {
         password,
         phoneNumber,
         address,
-        age,
+       
         gender
     }
     //const update =

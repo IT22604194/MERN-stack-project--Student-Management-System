@@ -43,9 +43,9 @@ function Header() {
           <ul className="navbar-nav ml-auto">
             {[
               { label: "Home", path: "/" },
-              { label: "Our Products", path: "/" },
+              { label: "Our Products", path: "/ourproducts" },
               { label: "Blogs", path: "/" },
-              { label: "Contact Us", path: "/" },
+              { label: "Contact Us", path: "/contact" },
               { label: "Create Student", path: "/add" },
             ].map((item, index) => (
               <li className="nav-item" key={index}>

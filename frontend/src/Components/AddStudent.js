@@ -1,15 +1,17 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
 import axios from "axios";
 import editstudent from "../images/editstudent.jpg";
 
 export default function AddStudent() {
+  const navigate = useNavigate(); // Initialize navigation
+
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [grade, setGrade] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
-  const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
 
   function sendData(e) {
@@ -22,7 +24,6 @@ export default function AddStudent() {
       password,
       phoneNumber,
       address,
-      age,
       gender,
     };
 
@@ -36,8 +37,8 @@ export default function AddStudent() {
         setPassword("");
         setPhoneNumber("");
         setAddress("");
-        setAge("");
         setGender("");
+        navigate("/login"); // Redirect to Login page after successful signup
       })
       .catch((err) => {
         alert(err);
@@ -51,25 +52,35 @@ export default function AddStudent() {
         backgroundImage: `url(${editstudent})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        display: "flex", 
+        display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh", 
+        height: "100vh",
+        width: "100%",
+        overflow: "hidden",
       }}
     >
       <div
         className="form-container"
         style={{
-          backgroundColor: "rgba(255, 255, 255, 0.9)", 
+          backgroundColor: "rgba(255, 255, 255, 0.9)",
           padding: "20px",
           borderRadius: "10px",
           boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
           maxWidth: "400px",
           width: "100%",
+          maxHeight: "80vh", // Prevents form from overflowing outside image
+          overflowY: "auto", // Adds scrollbar when content is too long
         }}
       >
-        <h1 style={{ textAlign: "center" }}>Sign Up</h1>
-        <form onSubmit={sendData}>
+        <h1 style={{
+          color: "#FF5733",
+          fontWeight: "bold",
+          fontSize: "2rem",
+          textShadow: "2px 2px 4px rgba(0,0,0,0.1)",
+          textAlign:"center"
+        }}>Sign Up</h1>
+        <form onSubmit={sendData} style={{ overflowY: "auto" }}>
           <div className="form-group">
             <label htmlFor="name">User Name</label>
             <input
@@ -77,42 +88,35 @@ export default function AddStudent() {
               className="form-control"
               id="name"
               placeholder="Enter Student Name"
-              onChange={(e) => {
-                setName(e.target.value);
-                console.log("Name updated:", e.target.value); // Debug log for name input
-              }}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name"> Position</label>
+            <label htmlFor="position">Position</label>
             <input
               type="text"
               className="form-control"
               id="position"
-              placeholder="Enter User's Position "
-              onChange={(e) => {
-                setPosition(e.target.value);
-                console.log("position updated:", e.target.value); // Debug log for name input
-              }}
+              placeholder="Enter User's Position"
+              onChange={(e) => setPosition(e.target.value)}
             />
           </div>
           <div className="form-group">
-            <label htmlFor="name"> Grade</label>
+            <label htmlFor="grade">Grade</label>
             <select
-              
               className="form-control"
               id="grade"
               value={grade}
-              placeholder="Enter User's Position "
               onChange={(e) => setGrade(e.target.value)}
-              required>
-                <option value="">Select Grade</option>
-                <option value="1-2">1-2 Years</option>
-                <option value="3-4">3-4 Years</option>
-                <option value="5-7">5-7 Years</option>
+              required
+            >
+              <option value="">Select Grade</option>
+              <option value="1-2">1-2 Years</option>
+              <option value="3-4">3-4 Years</option>
+              <option value="5-7">5-7 Years</option>
             </select>
-            </div>
-            <div className="form-group">
+          </div>
+          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -135,7 +139,7 @@ export default function AddStudent() {
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
-              pattern="\d{10}" // Ensures a valid 10-digit number
+              pattern="\d{10}"
             />
           </div>
           <div className="form-group">
@@ -150,8 +154,25 @@ export default function AddStudent() {
               minLength="10"
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
+          <div className="form-group">
+            <label htmlFor="gender">Gender</label>
+            <input
+              type="text"
+              className="form-control"
+              id="gender"
+              placeholder="Enter User's Gender"
+              onChange={(e) => setGender(e.target.value)}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary w-100" style={{ marginBottom: "10px" }}>
             Register
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary w-100"
+            onClick={() => navigate("/login")} // Navigate to Login page
+          >
+            Login Instead
           </button>
         </form>
       </div>
